@@ -3,7 +3,7 @@
     Rules listed and your program meets all of the Requirements found on 
     https://byui-cse.github.io/cse210-course-competency/inheritance/materials/greed-specification.html
 """
-
+from game.casting.artifact import Artifact
 
 class Director:
     """A person who directs the game. 
@@ -13,6 +13,7 @@ class Director:
     Attributes:
         _keyboard_service (KeyboardService): For getting directional input.
         _video_service (VideoService): For providing video output.
+        
     """
 
     def __init__(self, keyboard_service, video_service):
@@ -24,6 +25,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._score = 0
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -44,7 +46,11 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        pass
+        robot = cast.get_first_actor("robots")
+        velocity = self._keyboard_service.get_direction()
+        robot.set_velocity(velocity)
+
+        
 
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with artifacts.
