@@ -1,14 +1,14 @@
 from game.casting.actor import Actor
 
+
 class Artifact(Actor):
-    """The responsibility of an Artifact is to provide points
-    Attributes: 
-        _message (string): To display the score when the gems or rocks touch the actor player
-        
-        
-        """
+    """
+    The responsibility of an Artifact is to provide pointsf.
+
+    Attributes:
+        _message (string): to display the score when the gems or rocks touch the actor player.
+    """
     def __init__(self):
-        """Construct a  new Artifact"""
         super().__init__()
         self._score = 0
      
@@ -29,6 +29,3 @@ class Artifact(Actor):
         """
         self._score -= 1
         return self._score
-
-
-
