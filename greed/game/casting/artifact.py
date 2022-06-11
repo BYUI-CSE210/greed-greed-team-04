@@ -3,7 +3,7 @@ from game.casting.actor import Actor
 
 class Artifact(Actor):
     """
-    The responsibility of an Artifact is to provide pointsf.
+    The responsibility of an Artifact is to provide points.
 
     Attributes:
         _message (string): to display the score when the gems or rocks touch the actor player.

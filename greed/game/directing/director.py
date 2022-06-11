@@ -6,6 +6,7 @@ class Director:
     Attributes:
         _keyboard_service (KeyboardService): For getting directional input.
         _video_service (VideoService): For providing video output.
+        _score (int): providing the score of the player
     """
 
     def __init__(self, keyboard_service, video_service):
@@ -14,11 +15,12 @@ class Director:
         Args:
             keyboard_service (KeyboardService): An instance of KeyboardService.
             video_service (VideoService): An instance of VideoService.
+            _score (int): An instance of score
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
         self._score = 0
-        
+       
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
 
@@ -64,16 +66,19 @@ class Director:
             if robot.get_position().equals(artifact.get_position()):
                 if artifact.get_text() == "O": 
                     message1 = artifact.get_take_point()
-                    self._score += message1                
+                    self._score += message1    
+                    cast.remove_actor("artifacts", artifact)
                 else:
                     if artifact.get_text() == "*": 
                         message1 = artifact.get_add_point()
                         self._score += message1
+                        cast.remove_actor("artifacts", artifact)
+                        
 
         banner.set_text(f'score: {self._score}')   
                 
         
-    def _do_outputs(self, cast):
+    def _do_outputs(self, cast): 
         """Draws the actors on the screen.
         
         Args:
